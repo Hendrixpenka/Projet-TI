@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte des Productions du Cameroun</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --light-gray: #ecf0f1;
+            --dark-gray: #7f8c8d;
+            --background-color: #ffffff;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body { margin: 0; padding: 0; font-family: var(--font-family); display: flex; height: 100vh; background-color: var(--light-gray); }
+        #sidebar { 
+            width: 320px; 
+            padding: 25px; 
+            background: var(--background-color); 
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1); 
+            z-index: 1000; 
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        #sidebar h2 { 
+            margin-top: 0; 
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        #sidebar label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 600; 
+            color: var(--dark-gray);
+        }
+        #sidebar select, #sidebar button { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 15px; 
+            border-radius: 5px; 
+            border: 1px solid #bdc3c7;
+            background-color: white;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        #sidebar button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #sidebar button:hover { background-color: #2980b9; }
+        #map { flex-grow: 1; border-left: 1px solid #ddd; }
+        .legend { padding: 10px; font-size: 14px; background: rgba(255,255,255,0.9); box-shadow: 0 1px 5px rgba(0,0,0,0.2); border-radius: 5px; }
+        .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.9; border: 1px solid var(--dark-gray); }
+        
+        /* Modal Styles */
+        .modal {
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5);
+            align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background-color: var(--background-color); margin: auto; padding: 20px 30px; border: 1px solid #888;
+            width: 80%; max-width: 800px; border-radius: 8px; position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: fadeIn 0.3s;
+        }
+        .close-button {
+            color: #aaa; position: absolute; top: 10px; right: 20px;
+            font-size: 28px; font-weight: bold; cursor: pointer;
+        }
+        @keyframes fadeIn { from {opacity: 0; transform: scale(0.95);} to {opacity: 1; transform: scale(1);} }
+        #details-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        #details-table th, #details-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        #details-table th { background-color: var(--light-gray); color: var(--primary-color); }
+    </style>
+</head>
+<body>
+
+<div id="sidebar">
+    <h2>Filtres & Actions</h2>
+    <div>
+        <label for="filiere-filter">Filière:</label>
+        <select id="filiere-filter"><option value="Tous">Toutes les filières</option></select>
+    </div>
+    <div>
+        <label for="region-filter">Région:</label>
+        <select id="region-filter"><option value="">Toutes les régions</option></select>
+    </div>
+    <div>
+        <label for="department-filter">Département:</label>
+        <select id="department-filter" disabled><option value="">Tous les départements</option></select>
+    </div>
+    <button id="compare-button">Comparer les Productions</button>
+</div>
+
+<div id="map"></div>
+
+<!-- Modals -->
+<div id="chart-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeModal('chart-modal')">&times;</span>
+    <h3 id="chart-title"></h3>
+    <canvas id="comparison-chart"></canvas>
+  </div>
+</div>
+
+<div id="details-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeModal('details-modal')">&times;</span>
+    <h3 id="details-title"></h3>
+    <div id="details-content"></div>
+  </div>
+</div>
+
+<script>
+    const map = L.map('map').setView([6.0, 12.5], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    let productionData = [], allRegions = [], allDepartments = [];
+    let currentGeoJSONLayer = null, comparisonChart = null;
+
+    const filiereFilter = document.getElementById('filiere-filter');
+    const regionFilter = document.getElementById('region-filter');
+    const departmentFilter = document.getElementById('department-filter');
+    const compareButton = document.getElementById('compare-button');
+
+    const filiereColors = { 'Agriculture': '#27ae60', 'Élevage': '#8e44ad', 'Pêche': '#3498db', 'Aucune': '#95a5a6' };
+
+    const getColor = filiere => filiereColors[filiere] || '#7f8c8d';
+    const style = feature => {
+        const selectedFiliere = filiereFilter.value;
+        let fillColor;
+        if (selectedFiliere !== 'Tous') {
+            fillColor = getColor(selectedFiliere);
+        } else {
+            fillColor = getColor(feature.properties.dominant_filiere);
+        }
+        return {
+            fillColor: fillColor,
+            weight: 1.5, opacity: 1, color: 'white', dashArray: '3', fillOpacity: 0.7
+        };
+    };
+
+    const highlightFeature = e => e.target.setStyle({ weight: 4, color: '#333', dashArray: '' });
+    const resetHighlight = e => currentGeoJSONLayer.resetStyle(e.target);
+
+    const onEachFeature = (feature, layer) => {
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: () => showDetailsModal(feature.properties)
+        });
+    };
+
+    function showDetailsModal(props) {
+        const modal = document.getElementById('details-modal');
+        const title = document.getElementById('details-title');
+        const content = document.getElementById('details-content');
+        
+        const regionPcode = props.adm1_pcode || props.pcode;
+        const regionName = props.adm1_name1 || props.name;
+        title.innerText = `Productions de la région: ${regionName}`;
+
+        const regionProductions = productionData.filter(p => p.region_pcode === regionPcode);
+
+        if (regionProductions.length > 0) {
+            const summary = regionProductions.reduce((acc, p) => {
+                acc[p.filiere] = (acc[p.filiere] || 0) + p.production_tonnes_estimee;
+                return acc;
+            }, {});
+
+            let summaryHtml = '<h4>Résumé de la production (tonnes/têtes):</h4><ul>';
+            for (const [filiere, total] of Object.entries(summary)) {
+                summaryHtml += `<li><b>${filiere}:</b> ${total.toLocaleString()}</li>`;
+            }
+            summaryHtml += '</ul><hr/>';
+
+            let table = `<table id="details-table"><tr><th>Filière</th><th>Produit</th><th>Production (tonnes/têtes)</th></tr>`;
+            regionProductions.forEach(p => {
+                table += `<tr><td>${p.filiere}</td><td>${p.produit}</td><td>${p.production_tonnes_estimee.toLocaleString()}</td></tr>`;
+            });
+            table += `</table>`;
+            content.innerHTML = summaryHtml + table;
+        } else {
+            content.innerHTML = "<p>Aucune donnée de production disponible pour cette région.</p>";
+        }
+        modal.style.display = "flex";
+    }
+
+    function showCompareModal() {
+        const modal = document.getElementById('chart-modal');
+        const title = document.getElementById('chart-title');
+        const selectedFiliere = filiereFilter.value;
+        
+        if (selectedFiliere === 'Tous') {
+            alert("Veuillez sélectionner une filière pour comparer les productions.");
+            return;
+        }
+        title.innerText = `Production par région pour la filière: ${selectedFiliere}`;
+
+        const labels = allRegions.features.map(r => r.properties.adm1_name1);
+        const data = allRegions.features.map(r => {
+            const regionPcode = r.properties.adm1_pcode;
+            return productionData
+                .filter(p => p.region_pcode === regionPcode && p.filiere === selectedFiliere)
+                .reduce((sum, p) => sum + p.production_tonnes_estimee, 0);
+        });
+
+        if (comparisonChart) comparisonChart.destroy();
+        
+        comparisonChart = new Chart(document.getElementById('comparison-chart'), {
+            type: 'bar',
+            data: { labels, datasets: [{ label: `Production (${selectedFiliere})`, data, backgroundColor: getColor(selectedFiliere) }] },
+            options: { scales: { y: { beginAtZero: true } } }
+        });
+        modal.style.display = "flex";
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
+    window.onclick = e => {
+        if (e.target.classList.contains('modal')) {
+            e.target.style.display = "none";
+        }
+    };
+
+    function updateMap() {
+        if (currentGeoJSONLayer) map.removeLayer(currentGeoJSONLayer);
+
+        const selectedRegion = regionFilter.value;
+        const selectedDepartment = departmentFilter.value;
+        const selectedFiliere = filiereFilter.value;
+
+        let features;
+        if (selectedDepartment) {
+            features = allDepartments.features.filter(d => d.properties.adm2_pcode === selectedDepartment);
+        } else if (selectedRegion) {
+            features = allDepartments.features.filter(d => d.properties.adm1_pcode === selectedRegion);
+        } else {
+            features = allRegions.features;
+        }
+        
+        features.forEach(feature => {
+            const pcode = feature.properties.adm1_pcode || feature.properties.pcode;
+            const regionProductions = productionData.filter(p => p.region_pcode === pcode);
+            
+            if (selectedFiliere !== 'Tous') {
+                 feature.properties.has_filiere = regionProductions.some(p => p.filiere === selectedFiliere);
+            } else {
+                 feature.properties.has_filiere = true;
+            }
+
+            let dominantFiliere = 'Aucune';
+            if (regionProductions.length > 0) {
+                 const filiereCounts = regionProductions.reduce((acc, p) => ({ ...acc, [p.filiere]: (acc[p.filiere] || 0) + 1 }), {});
+                 dominantFiliere = Object.keys(filiereCounts).reduce((a, b) => filiereCounts[a] > filiereCounts[b] ? a : b);
+            }
+            feature.properties.dominant_filiere = dominantFiliere;
+        });
+
+        const featuresToDisplay = features.filter(f => f.properties.has_filiere);
+
+        currentGeoJSONLayer = L.geoJSON(featuresToDisplay, { style, onEachFeature }).addTo(map);
+        if (featuresToDisplay.length > 0) {
+           map.fitBounds(currentGeoJSONLayer.getBounds());
+        }
+    }
+
+    Promise.all([
+        fetch('/api/productions').then(res => res.json()),
+        fetch('/api/regions').then(res => res.json()),
+        fetch('/api/departments').then(res => res.json())
+    ]).then(([productions, regions, departments]) => {
+        productionData = productions;
+        allRegions = regions;
+        allDepartments = departments;
+        
+        // Populate filters
+        [...new Set(productions.map(p => p.filiere))].forEach(f => filiereFilter.add(new Option(f, f)));
+        regions.features.sort((a,b) => a.properties.adm1_name1.localeCompare(b.properties.adm1_name1)).forEach(r => {
+            regionFilter.add(new Option(r.properties.adm1_name1, r.properties.adm1_pcode));
+        });
+
+        // Event listeners
+        regionFilter.addEventListener('change', () => {
+            departmentFilter.innerHTML = '<option value="">Tous les départements</option>';
+            const selectedRegion = regionFilter.value;
+            departmentFilter.disabled = !selectedRegion;
+            if (selectedRegion) {
+                departments.features
+                    .filter(d => d.properties.adm1_pcode === selectedRegion)
+                    .sort((a,b) => a.properties.adm2_name1.localeCompare(b.properties.adm2_name1))
+                    .forEach(d => departmentFilter.add(new Option(d.properties.adm2_name1, d.properties.adm2_pcode)));
+            }
+            updateMap();
+        });
+
+        departmentFilter.addEventListener('change', updateMap);
+        filiereFilter.addEventListener('change', updateMap);
+        compareButton.addEventListener('click', showCompareModal);
+
+        updateMap();
+    }).catch(error => {
+        console.error('Error loading data:', error);
+        alert('Failed to load data. Please check console.');
+    });
+
+    const legend = L.control({position: 'bottomright'});
+    legend.onAdd = function (map) {
+        const div = L.DomUtil.create('div', 'legend');
+        const filieres = Object.keys(filiereColors);
+        div.innerHTML = filieres.map(f => `<i style="background:${getColor(f)}"></i> ${f}`).join('<br>');
+        return div;
+    };
+    legend.addTo(map);
+
+</script>
+
+</body>
+</html>

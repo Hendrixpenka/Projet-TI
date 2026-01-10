@@ -1,0 +1,31 @@
+region_pcode,region_name,filiere,produit,production_tonnes_estimee
+CM001,Adamaoua,Élevage,Bovins (têtes),1500000
+CM001,Adamaoua,Agriculture,Maïs,80000
+CM002,Centre,Agriculture,Cacao,80000
+CM002,Centre,Agriculture,Manioc,2000000
+CM002,Centre,Élevage,Volailles (têtes),3000000
+CM003,Est,Agriculture,Cacao,55000
+CM003,Est,Agriculture,Banane plantain,700000
+CM003,Est,Pêche,Poisson d'eau douce,15000
+CM004,Extrême-Nord,Agriculture,Sorgho,450000
+CM004,Extrême-Nord,Agriculture,Niébé,50000
+CM004,Extrême-Nord,Agriculture,Coton,40000
+CM004,Extrême-Nord,Élevage,Ovins/Caprins (têtes),2000000
+CM004,Extrême-Nord,Pêche,Poisson (Logone & Chari),25000
+CM005,Littoral,Agriculture,Banane douce,400000
+CM005,Littoral,Agriculture,Huile de palme,250000
+CM005,Littoral,Pêche,Poisson de mer,50000
+CM006,Nord,Agriculture,Coton,90000
+CM006,Nord,Agriculture,Arachide,120000
+CM006,Nord,Élevage,Bovins (têtes),1000000
+CM007,Nord-Ouest,Agriculture,Pomme de terre,120000
+CM007,Nord-Ouest,Agriculture,Thé,5000
+CM007,Nord-Ouest,Élevage,Volailles (têtes),1500000
+CM008,Ouest,Agriculture,Café Arabica,30000
+CM008,Ouest,Agriculture,Maïs,300000
+CM008,Ouest,Élevage,Porcins (têtes),500000
+CM009,Sud,Agriculture,Cacao,60000
+CM009,Sud,Pêche,Crevettes,10000
+CM010,Sud-Ouest,Agriculture,Huile de palme,180000
+CM010,Sud-Ouest,Agriculture,Banane plantain,900000
+CM010,Sud-Ouest,Pêche,Poisson de mer,45000

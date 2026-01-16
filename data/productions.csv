@@ -1,31 +1,279 @@
-region_pcode,region_name,filiere,produit,production_tonnes_estimee
-CM001,Adamaoua,Élevage,Bovins (têtes),1500000
-CM001,Adamaoua,Agriculture,Maïs,80000
-CM002,Centre,Agriculture,Cacao,80000
-CM002,Centre,Agriculture,Manioc,2000000
-CM002,Centre,Élevage,Volailles (têtes),3000000
-CM003,Est,Agriculture,Cacao,55000
-CM003,Est,Agriculture,Banane plantain,700000
-CM003,Est,Pêche,Poisson d'eau douce,15000
-CM004,Extrême-Nord,Agriculture,Sorgho,450000
-CM004,Extrême-Nord,Agriculture,Niébé,50000
-CM004,Extrême-Nord,Agriculture,Coton,40000
-CM004,Extrême-Nord,Élevage,Ovins/Caprins (têtes),2000000
-CM004,Extrême-Nord,Pêche,Poisson (Logone & Chari),25000
-CM005,Littoral,Agriculture,Banane douce,400000
-CM005,Littoral,Agriculture,Huile de palme,250000
-CM005,Littoral,Pêche,Poisson de mer,50000
-CM006,Nord,Agriculture,Coton,90000
-CM006,Nord,Agriculture,Arachide,120000
-CM006,Nord,Élevage,Bovins (têtes),1000000
-CM007,Nord-Ouest,Agriculture,Pomme de terre,120000
-CM007,Nord-Ouest,Agriculture,Thé,5000
-CM007,Nord-Ouest,Élevage,Volailles (têtes),1500000
-CM008,Ouest,Agriculture,Café Arabica,30000
-CM008,Ouest,Agriculture,Maïs,300000
-CM008,Ouest,Élevage,Porcins (têtes),500000
-CM009,Sud,Agriculture,Cacao,60000
-CM009,Sud,Pêche,Crevettes,10000
-CM010,Sud-Ouest,Agriculture,Huile de palme,180000
-CM010,Sud-Ouest,Agriculture,Banane plantain,900000
-CM010,Sud-Ouest,Pêche,Poisson de mer,45000
+region_pcode,filiere,produit,production_tonnes_estimee,annee_reference,source_donnees
+CM001,Élevage,Bovins (têtes),1500000,2023,MINEPIA
+CM001,Élevage,Ovins (têtes),450000,2023,MINEPIA
+CM001,Élevage,Caprins (têtes),380000,2023,MINEPIA
+CM001,Élevage,Volailles (têtes),800000,2023,MINEPIA
+CM001,Agriculture,Maïs,80000,2023,MINADER
+CM001,Agriculture,Sorgho,65000,2023,MINADER
+CM001,Agriculture,Mil,45000,2023,MINADER
+CM001,Agriculture,Riz paddy,25000,2023,MINADER
+CM001,Agriculture,Arachide,35000,2023,MINADER
+CM001,Agriculture,Manioc,150000,2023,MINADER
+CM001,Agriculture,Patate douce,40000,2023,MINADER
+CM001,Agriculture,Igname,55000,2023,MINADER
+CM001,Agriculture,Haricot,28000,2023,MINADER
+CM001,Agriculture,Soja,15000,2023,MINADER
+CM001,Agriculture,Taro,20000,2023,MINADER
+CM001,Pêche,Poisson d'eau douce,8000,2023,MINEPIA
+CM002,Agriculture,Cacao,80000,2023,MINADER
+CM002,Agriculture,Manioc,2000000,2023,MINADER
+CM002,Agriculture,Banane plantain,850000,2023,MINADER
+CM002,Agriculture,Macabo,180000,2023,MINADER
+CM002,Agriculture,Igname,250000,2023,MINADER
+CM002,Agriculture,Maïs,420000,2023,MINADER
+CM002,Agriculture,Arachide,95000,2023,MINADER
+CM002,Agriculture,Huile de palme,120000,2023,MINADER
+CM002,Agriculture,Palmiste,45000,2023,MINADER
+CM002,Agriculture,Café Robusta,8000,2023,MINADER
+CM002,Agriculture,Avocat,35000,2023,MINADER
+CM002,Agriculture,Safou,25000,2023,MINADER
+CM002,Agriculture,Mangue,40000,2023,MINADER
+CM002,Agriculture,Orange,55000,2023,MINADER
+CM002,Agriculture,Ananas,75000,2023,MINADER
+CM002,Agriculture,Papaye,30000,2023,MINADER
+CM002,Agriculture,Tomate,65000,2023,MINADER
+CM002,Agriculture,Piment,12000,2023,MINADER
+CM002,Agriculture,Gombo,18000,2023,MINADER
+CM002,Agriculture,Légumes feuilles,45000,2023,MINADER
+CM002,Élevage,Volailles (têtes),3000000,2023,MINEPIA
+CM002,Élevage,Porcins (têtes),280000,2023,MINEPIA
+CM002,Élevage,Ovins (têtes),150000,2023,MINEPIA
+CM002,Élevage,Caprins (têtes),180000,2023,MINEPIA
+CM002,Élevage,Lapins (têtes),45000,2023,MINEPIA
+CM002,Pêche,Poisson d'eau douce,12000,2023,MINEPIA
+CM002,Pêche,Poisson-chat,8000,2023,MINEPIA
+CM003,Agriculture,Cacao,55000,2023,MINADER
+CM003,Agriculture,Café Robusta,12000,2023,MINADER
+CM003,Agriculture,Banane plantain,700000,2023,MINADER
+CM003,Agriculture,Manioc,980000,2023,MINADER
+CM003,Agriculture,Macabo,150000,2023,MINADER
+CM003,Agriculture,Igname,180000,2023,MINADER
+CM003,Agriculture,Taro,95000,2023,MINADER
+CM003,Agriculture,Maïs,125000,2023,MINADER
+CM003,Agriculture,Arachide,55000,2023,MINADER
+CM003,Agriculture,Huile de palme,85000,2023,MINADER
+CM003,Agriculture,Palmiste,32000,2023,MINADER
+CM003,Agriculture,Avocat,28000,2023,MINADER
+CM003,Agriculture,Safou,35000,2023,MINADER
+CM003,Agriculture,Mangue,25000,2023,MINADER
+CM003,Agriculture,Ananas,45000,2023,MINADER
+CM003,Agriculture,Orange,30000,2023,MINADER
+CM003,Agriculture,Papaye,22000,2023,MINADER
+CM003,Agriculture,Hévéa (caoutchouc),15000,2023,MINADER
+CM003,Élevage,Volailles (têtes),800000,2023,MINEPIA
+CM003,Élevage,Porcins (têtes),180000,2023,MINEPIA
+CM003,Élevage,Ovins (têtes),95000,2023,MINEPIA
+CM003,Élevage,Caprins (têtes),120000,2023,MINEPIA
+CM003,Pêche,Poisson d'eau douce,15000,2023,MINEPIA
+CM003,Pêche,Tilapia,8000,2023,MINEPIA
+CM003,Pêche,Poisson-chat,5000,2023,MINEPIA
+CM004,Agriculture,Sorgho,450000,2023,MINADER
+CM004,Agriculture,Mil,280000,2023,MINADER
+CM004,Agriculture,Maïs,320000,2023,MINADER
+CM004,Agriculture,Riz paddy,95000,2023,MINADER
+CM004,Agriculture,Niébé,50000,2023,MINADER
+CM004,Agriculture,Arachide,180000,2023,MINADER
+CM004,Agriculture,Coton,40000,2023,MINADER
+CM004,Agriculture,Sésame,25000,2023,MINADER
+CM004,Agriculture,Oignon,120000,2023,MINADER
+CM004,Agriculture,Gombo,35000,2023,MINADER
+CM004,Agriculture,Tomate,85000,2023,MINADER
+CM004,Agriculture,Piment,18000,2023,MINADER
+CM004,Agriculture,Manioc,450000,2023,MINADER
+CM004,Agriculture,Patate douce,95000,2023,MINADER
+CM004,Agriculture,Igname,65000,2023,MINADER
+CM004,Agriculture,Pastèque,45000,2023,MINADER
+CM004,Agriculture,Melon,28000,2023,MINADER
+CM004,Élevage,Ovins (têtes),1200000,2023,MINEPIA
+CM004,Élevage,Caprins (têtes),800000,2023,MINEPIA
+CM004,Élevage,Bovins (têtes),950000,2023,MINEPIA
+CM004,Élevage,Volailles (têtes),2500000,2023,MINEPIA
+CM004,Élevage,Équins (têtes),35000,2023,MINEPIA
+CM004,Élevage,Ânes (têtes),45000,2023,MINEPIA
+CM004,Pêche,Poisson (Logone et Chari),25000,2023,MINEPIA
+CM004,Pêche,Tilapia,12000,2023,MINEPIA
+CM004,Pêche,Poisson-chat,8000,2023,MINEPIA
+CM005,Agriculture,Banane douce,400000,2023,MINADER
+CM005,Agriculture,Banane plantain,550000,2023,MINADER
+CM005,Agriculture,Huile de palme,250000,2023,MINADER
+CM005,Agriculture,Palmiste,95000,2023,MINADER
+CM005,Agriculture,Manioc,680000,2023,MINADER
+CM005,Agriculture,Macabo,120000,2023,MINADER
+CM005,Agriculture,Igname,150000,2023,MINADER
+CM005,Agriculture,Taro,85000,2023,MINADER
+CM005,Agriculture,Maïs,180000,2023,MINADER
+CM005,Agriculture,Arachide,65000,2023,MINADER
+CM005,Agriculture,Cacao,35000,2023,MINADER
+CM005,Agriculture,Ananas,150000,2023,MINADER
+CM005,Agriculture,Papaye,80000,2023,MINADER
+CM005,Agriculture,Mangue,55000,2023,MINADER
+CM005,Agriculture,Avocat,45000,2023,MINADER
+CM005,Agriculture,Noix de coco,120000,2023,MINADER
+CM005,Agriculture,Orange,70000,2023,MINADER
+CM005,Agriculture,Pamplemousse,40000,2023,MINADER
+CM005,Agriculture,Citron,25000,2023,MINADER
+CM005,Agriculture,Tomate,95000,2023,MINADER
+CM005,Agriculture,Piment,22000,2023,MINADER
+CM005,Agriculture,Légumes divers,110000,2023,MINADER
+CM005,Agriculture,Canne à sucre,85000,2023,MINADER
+CM005,Élevage,Volailles (têtes),1800000,2023,MINEPIA
+CM005,Élevage,Porcins (têtes),220000,2023,MINEPIA
+CM005,Élevage,Ovins (têtes),85000,2023,MINEPIA
+CM005,Élevage,Caprins (têtes),95000,2023,MINEPIA
+CM005,Pêche,Poisson de mer,50000,2023,MINEPIA
+CM005,Pêche,Crevettes,8000,2023,MINEPIA
+CM005,Pêche,Crabes,5000,2023,MINEPIA
+CM005,Pêche,Poisson fumé,15000,2023,MINEPIA
+CM005,Pêche,Mollusques,3000,2023,MINEPIA
+CM006,Agriculture,Coton,90000,2023,MINADER
+CM006,Agriculture,Arachide,120000,2023,MINADER
+CM006,Agriculture,Sorgho,280000,2023,MINADER
+CM006,Agriculture,Mil,180000,2023,MINADER
+CM006,Agriculture,Maïs,250000,2023,MINADER
+CM006,Agriculture,Riz paddy,65000,2023,MINADER
+CM006,Agriculture,Niébé,45000,2023,MINADER
+CM006,Agriculture,Sésame,22000,2023,MINADER
+CM006,Agriculture,Oignon,95000,2023,MINADER
+CM006,Agriculture,Gombo,28000,2023,MINADER
+CM006,Agriculture,Tomate,75000,2023,MINADER
+CM006,Agriculture,Piment,15000,2023,MINADER
+CM006,Agriculture,Manioc,380000,2023,MINADER
+CM006,Agriculture,Patate douce,85000,2023,MINADER
+CM006,Agriculture,Igname,55000,2023,MINADER
+CM006,Agriculture,Pastèque,35000,2023,MINADER
+CM006,Agriculture,Melon,20000,2023,MINADER
+CM006,Agriculture,Soja,18000,2023,MINADER
+CM006,Élevage,Bovins (têtes),1000000,2023,MINEPIA
+CM006,Élevage,Ovins (têtes),850000,2023,MINEPIA
+CM006,Élevage,Caprins (têtes),650000,2023,MINEPIA
+CM006,Élevage,Volailles (têtes),1800000,2023,MINEPIA
+CM006,Élevage,Équins (têtes),28000,2023,MINEPIA
+CM006,Élevage,Ânes (têtes),35000,2023,MINEPIA
+CM006,Pêche,Poisson d'eau douce,10000,2023,MINEPIA
+CM006,Pêche,Tilapia,5000,2023,MINEPIA
+CM007,Agriculture,Pomme de terre,120000,2023,MINADER
+CM007,Agriculture,Maïs,350000,2023,MINADER
+CM007,Agriculture,Haricot,85000,2023,MINADER
+CM007,Agriculture,Thé,5000,2023,MINADER
+CM007,Agriculture,Café Arabica,15000,2023,MINADER
+CM007,Agriculture,Banane plantain,280000,2023,MINADER
+CM007,Agriculture,Manioc,420000,2023,MINADER
+CM007,Agriculture,Macabo,180000,2023,MINADER
+CM007,Agriculture,Taro,95000,2023,MINADER
+CM007,Agriculture,Igname,120000,2023,MINADER
+CM007,Agriculture,Chou,55000,2023,MINADER
+CM007,Agriculture,Carotte,45000,2023,MINADER
+CM007,Agriculture,Tomate,95000,2023,MINADER
+CM007,Agriculture,Piment,25000,2023,MINADER
+CM007,Agriculture,Poireau,18000,2023,MINADER
+CM007,Agriculture,Céleri,12000,2023,MINADER
+CM007,Agriculture,Oignon,35000,2023,MINADER
+CM007,Agriculture,Ail,8000,2023,MINADER
+CM007,Agriculture,Avocat,40000,2023,MINADER
+CM007,Agriculture,Gingembre,15000,2023,MINADER
+CM007,Agriculture,Curcuma,8000,2023,MINADER
+CM007,Agriculture,Arachide,65000,2023,MINADER
+CM007,Élevage,Volailles (têtes),1500000,2023,MINEPIA
+CM007,Élevage,Porcins (têtes),350000,2023,MINEPIA
+CM007,Élevage,Ovins (têtes),280000,2023,MINEPIA
+CM007,Élevage,Caprins (têtes),320000,2023,MINEPIA
+CM007,Élevage,Bovins (têtes),180000,2023,MINEPIA
+CM007,Élevage,Lapins (têtes),55000,2023,MINEPIA
+CM007,Pêche,Poisson d'eau douce,6000,2023,MINEPIA
+CM008,Agriculture,Café Arabica,30000,2023,MINADER
+CM008,Agriculture,Maïs,300000,2023,MINADER
+CM008,Agriculture,Haricot,120000,2023,MINADER
+CM008,Agriculture,Pomme de terre,95000,2023,MINADER
+CM008,Agriculture,Banane plantain,320000,2023,MINADER
+CM008,Agriculture,Manioc,550000,2023,MINADER
+CM008,Agriculture,Macabo,220000,2023,MINADER
+CM008,Agriculture,Taro,135000,2023,MINADER
+CM008,Agriculture,Igname,180000,2023,MINADER
+CM008,Agriculture,Patate douce,65000,2023,MINADER
+CM008,Agriculture,Arachide,95000,2023,MINADER
+CM008,Agriculture,Tomate,110000,2023,MINADER
+CM008,Agriculture,Piment,35000,2023,MINADER
+CM008,Agriculture,Chou,65000,2023,MINADER
+CM008,Agriculture,Carotte,45000,2023,MINADER
+CM008,Agriculture,Oignon,55000,2023,MINADER
+CM008,Agriculture,Poireau,22000,2023,MINADER
+CM008,Agriculture,Céleri,15000,2023,MINADER
+CM008,Agriculture,Légumes feuilles,85000,2023,MINADER
+CM008,Agriculture,Gombo,28000,2023,MINADER
+CM008,Agriculture,Avocat,55000,2023,MINADER
+CM008,Agriculture,Orange,45000,2023,MINADER
+CM008,Agriculture,Mandarine,25000,2023,MINADER
+CM008,Agriculture,Citron,18000,2023,MINADER
+CM008,Agriculture,Goyave,20000,2023,MINADER
+CM008,Agriculture,Papaye,30000,2023,MINADER
+CM008,Élevage,Porcins (têtes),500000,2023,MINEPIA
+CM008,Élevage,Volailles (têtes),2200000,2023,MINEPIA
+CM008,Élevage,Ovins (têtes),320000,2023,MINEPIA
+CM008,Élevage,Caprins (têtes),380000,2023,MINEPIA
+CM008,Élevage,Bovins (têtes),220000,2023,MINEPIA
+CM008,Élevage,Lapins (têtes),75000,2023,MINEPIA
+CM008,Pêche,Poisson d'eau douce,8000,2023,MINEPIA
+CM009,Agriculture,Cacao,60000,2023,MINADER
+CM009,Agriculture,Café Robusta,8000,2023,MINADER
+CM009,Agriculture,Banane plantain,420000,2023,MINADER
+CM009,Agriculture,Manioc,680000,2023,MINADER
+CM009,Agriculture,Macabo,150000,2023,MINADER
+CM009,Agriculture,Igname,120000,2023,MINADER
+CM009,Agriculture,Taro,85000,2023,MINADER
+CM009,Agriculture,Maïs,95000,2023,MINADER
+CM009,Agriculture,Arachide,45000,2023,MINADER
+CM009,Agriculture,Huile de palme,95000,2023,MINADER
+CM009,Agriculture,Palmiste,35000,2023,MINADER
+CM009,Agriculture,Avocat,25000,2023,MINADER
+CM009,Agriculture,Safou,40000,2023,MINADER
+CM009,Agriculture,Mangue,28000,2023,MINADER
+CM009,Agriculture,Ananas,35000,2023,MINADER
+CM009,Agriculture,Orange,22000,2023,MINADER
+CM009,Agriculture,Papaye,18000,2023,MINADER
+CM009,Agriculture,Hévéa (caoutchouc),12000,2023,MINADER
+CM009,Élevage,Volailles (têtes),650000,2023,MINEPIA
+CM009,Élevage,Porcins (têtes),120000,2023,MINEPIA
+CM009,Élevage,Ovins (têtes),65000,2023,MINEPIA
+CM009,Élevage,Caprins (têtes),85000,2023,MINEPIA
+CM009,Pêche,Poisson de mer,28000,2023,MINEPIA
+CM009,Pêche,Crevettes,10000,2023,MINEPIA
+CM009,Pêche,Crabes,4000,2023,MINEPIA
+CM009,Pêche,Poisson fumé,8000,2023,MINEPIA
+CM009,Pêche,Poisson d'eau douce,12000,2023,MINEPIA
+CM010,Agriculture,Huile de palme,180000,2023,MINADER
+CM010,Agriculture,Palmiste,68000,2023,MINADER
+CM010,Agriculture,Banane plantain,900000,2023,MINADER
+CM010,Agriculture,Banane douce,280000,2023,MINADER
+CM010,Agriculture,Cacao,70000,2023,MINADER
+CM010,Agriculture,Café Robusta,5000,2023,MINADER
+CM010,Agriculture,Hévéa (caoutchouc),45000,2023,MINADER
+CM010,Agriculture,Manioc,820000,2023,MINADER
+CM010,Agriculture,Macabo,180000,2023,MINADER
+CM010,Agriculture,Igname,220000,2023,MINADER
+CM010,Agriculture,Taro,110000,2023,MINADER
+CM010,Agriculture,Maïs,150000,2023,MINADER
+CM010,Agriculture,Arachide,55000,2023,MINADER
+CM010,Agriculture,Avocat,65000,2023,MINADER
+CM010,Agriculture,Safou,45000,2023,MINADER
+CM010,Agriculture,Noix de coco,95000,2023,MINADER
+CM010,Agriculture,Ananas,120000,2023,MINADER
+CM010,Agriculture,Papaye,75000,2023,MINADER
+CM010,Agriculture,Mangue,50000,2023,MINADER
+CM010,Agriculture,Orange,40000,2023,MINADER
+CM010,Agriculture,Pamplemousse,28000,2023,MINADER
+CM010,Agriculture,Poivre,8000,2023,MINADER
+CM010,Agriculture,Piment,18000,2023,MINADER
+CM010,Agriculture,Tomate,85000,2023,MINADER
+CM010,Agriculture,Gombo,25000,2023,MINADER
+CM010,Agriculture,Légumes feuilles,55000,2023,MINADER
+CM010,Élevage,Volailles (têtes),1200000,2023,MINEPIA
+CM010,Élevage,Porcins (têtes),180000,2023,MINEPIA
+CM010,Élevage,Ovins (têtes),95000,2023,MINEPIA
+CM010,Élevage,Caprins (têtes),120000,2023,MINEPIA
+CM010,Élevage,Bovins (têtes),85000,2023,MINEPIA
+CM010,Pêche,Poisson de mer,45000,2023,MINEPIA
+CM010,Pêche,Crevettes,12000,2023,MINEPIA
+CM010,Pêche,Crabes,6000,2023,MINEPIA
+CM010,Pêche,Poisson fumé,15000,2023,MINEPIA
+CM010,Pêche,Mollusques,4000,2023,MINEPIA
+CM010,Pêche,Poisson d'eau douce,8000,2023,MINEPIA

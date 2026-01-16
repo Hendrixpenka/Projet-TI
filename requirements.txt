@@ -1,0 +1,20 @@
+# Flask et extensions
+Flask==3.0.0
+Flask-CORS==4.0.0
+
+# Base de données
+SQLAlchemy==2.0.23
+GeoAlchemy2==0.14.2
+psycopg2-binary==2.9.9
+
+# Traitement de données géospatiales
+# Note: On laisse pip installer les dernières versions compatibles
+# au lieu de forcer des versions qui nécessitent compilation
+geopandas
+pandas
+numpy
+
+# Dépendances géospatiales (installées automatiquement avec geopandas)
+# shapely
+# fiona
+# pyproj

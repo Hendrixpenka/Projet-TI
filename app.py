@@ -12,8 +12,8 @@ DB_CONFIG = {
     'host': 'localhost',
     'port': 5432,
     'database': 'cameroun_production_db',
-    'user': 'postgres',
-    'password': 'lelouch237' 
+    'user': 'donpk',
+    'password': '18151995' 
 }
 
 def get_engine():

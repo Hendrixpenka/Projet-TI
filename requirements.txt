@@ -10,11 +10,9 @@ psycopg2-binary==2.9.9
 # Traitement de données géospatiales
 # Note: On laisse pip installer les dernières versions compatibles
 # au lieu de forcer des versions qui nécessitent compilation
-geopandas
+geopandas==0.12.2
 pandas
 numpy
-
-# Dépendances géospatiales (installées automatiquement avec geopandas)
-# shapely
-# fiona
-# pyproj
+Fiona==1.9.1
+pyproj==3.4.1
+Shapely==2.0.1

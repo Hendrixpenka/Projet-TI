@@ -8,6 +8,7 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 import urllib.parse
 from pathlib import Path
+from shapely.geometry import MultiPolygon
 
 # ============================================
 # 1. CONFIGURATION DE LA CONNEXION
@@ -18,8 +19,8 @@ DB_CONFIG = {
     'host': 'localhost',
     'port': 5432,
     'database': 'cameroun_production_db',
-    'user': 'postgres',
-    'password': 'lelouch237' 
+    'user': 'donpk',
+    'password': '18151995' 
 }
 
 # Chemins vers les fichiers de données
@@ -82,8 +83,7 @@ def process_gdf(gdf, pcode_col, name_col, parent_code_col=None):
 
     # 2. Conversion systématique en MultiPolygon pour éviter les conflits de types
     gdf['geometry'] = gdf['geometry'].apply(
-        lambda geom: geom if geom.geom_type == 'MultiPolygon' 
-        else gpd.GeoSeries([geom]).union_all()
+        lambda geom: MultiPolygon([geom]) if geom.geom_type == 'Polygon' else geom
     )
 
     # 3. Sélection des colonnes et renommage
